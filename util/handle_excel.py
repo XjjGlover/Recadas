@@ -56,9 +56,7 @@ class HandleExcel:
         wb.save(self.filename)
 
 
-
 do_excel = HandleExcel(r"..\data\cases.xls")
-
 
 if __name__ == '__main__':
     do_excel = HandleExcel(r"..\data\cases.xlsx")
