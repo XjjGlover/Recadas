@@ -56,12 +56,11 @@ class HandleExcel:
         wb.save(self.filename)
 
 
-
 do_excel = HandleExcel(r"..\data\cases.xls")
 
 
 if __name__ == '__main__':
-    do_excel = HandleExcel(r"..\data\cases.xlsx")
+    do_excel = HandleExcel(r"..\data\cases.xls")
     print(do_excel.get_cases()[0])
     print(list(do_excel.get_cases()[0]))
     print(len(do_excel.get_cases()))
