@@ -28,23 +28,26 @@ class HandleAssert:
         """
         if isinstance(exp, dict) and isinstance(act, dict):
             for i in act:
-                if i == "token":
+                if i == ("token" or "total"):
                     continue
                 try:
                     exp[i]
                 except Exception:
-                    return False
+                    raise AssertionError
                 if isinstance(act[i], dict) and isinstance(exp[i], dict):
                     _ = self._compare_json_data(act[i], exp[i])
                     if not _:
-                        return False
+                        raise AssertionError
                 elif act[i] != exp[i]:
-                    return False
+                    raise AssertionError
             return True
 
     def Assert(self, actual, expect):
         result = self._compare_json_data(actual, expect)
         return result
+
+
+do_assert = HandleAssert()
 
 
 if __name__ == '__main__':
@@ -59,7 +62,7 @@ if __name__ == '__main__':
             'roleId': 873073596974881,
             'roleName': "企业管理员",
             'roleType': "COMPANY_ADMIN",
-            'token': "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ7XCJjb21wYW55SWRcIjo4NzMwNzM1OTY5NzQ4ODAsXCJjb21wYW55TmFtZVwiOlwi5ZiJ5L-K5ZKM5LuW55qE5bCP5LyZ5Ly06ZuG5ZuiXCIsXCJjb21wYW55Tm9cIjpcImNzYlwiLFwiaWRcIjo4NzMwNzM1OTY5NzQ4ODIsXCJsb2dpbklkZW50aXR5XCI6XCIyYzkyOTRlMTcyNmYxMWI5MDE3MjZmNzlkYmU1MDAwZFwiLFwib3JnSWRcIjo4NzMwNzM1OTY5NzQ4ODAsXCJyZWFsTmFtZVwiOlwi5LyB5Lia566h55CG5ZGYXCIsXCJyb2xlVHlwZVwiOlwiQ09NUEFOWV9BRE1JTlwiLFwidGVybWluYWxUeXBlXCI6XCJXRUJcIn0ifQ.f8dd5pQyQaCLO9rZAFChtOOldf4RBij8h7uMxGsvtXkht38Ss30DN7zR8hQOgxzxYapx6jFuGiXQNvcPiBLjbg"
+            'token': ""
         },
         'message': "操作成功",
         'total': 0
@@ -72,13 +75,11 @@ if __name__ == '__main__':
             'id': 873073596974882,
             'orgName': "嘉俊和他的小伙伴集团",
             'realName': "企业管理员",
-            'roleId': 87307359697488,
+            'roleId': 873073596974881,
             'roleName': "企业管理员",
-            'roleType': "COMPANY_ADMIN",
-            'token': "abc"
+            'roleType': "COMPANY_ADMIN"
         },
-        'message': "操作成功",
-        'total': 0
+        'message': "操作成功"
     }
     do_assert = HandleAssert()
     result = do_assert.Assert(actual, expect)
