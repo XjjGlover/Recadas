@@ -41,18 +41,20 @@ class HandleExcel:
         else:
             print("your parameter is incorrect!")
 
-    def write_res(self, row, actual, result):
+    def write_res(self, row, actual=None, expect=None, result=None):
         """
         Put result an actual to data(excel) after case executed.
         :param row:
         :param actual:
+        :param expect:
         :param result:
         :return:
         """
         wb = copy(self.file)
         sheet = wb.get_sheet(0)
         sheet.write(row, 5, actual)
-        sheet.write(row, 6, result)
+        sheet.write(row, 6, expect)
+        sheet.write(row, 7, result)
         wb.save(self.filename)
 
 

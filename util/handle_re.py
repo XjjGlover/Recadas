@@ -11,14 +11,13 @@
 import re
 from util.handle_mysql import do_mysql
 
+captcha_pattern = re.compile(r"\${captcha\}")
+data_pattern = re.compile(r"\${data\}")
 
 class HandleRe:
     """
     Wrap re moudle.
     """
-    captcha_pattern = re.compile(r"\${captcha\}")
-    data_pattern = re.compile(r"\${data\}")
-
     def __init__(self):
         pass
 
@@ -27,7 +26,7 @@ class HandleRe:
         Substitute captcha and return the data substituted.
         :return:
         """
-        res = re.sub(self.captcha_pattern, value, data)
+        res = re.sub(captcha_pattern, value, data)
         return res
 
     def _data(self, data, value):
@@ -35,13 +34,33 @@ class HandleRe:
         Substitute data and return the data substituted.
         :return:
         """
-        res = re.sub(self.data_pattern, value, data)
+        res = re.sub(data_pattern, value, data)
         return res
 
+    def matchcaptcha(self, data):
+        """
+        Whether match captcha.
+        :param data:
+        :return:
+        """
+        if re.search(captcha_pattern, data):
+            return True
+        return False
+
+    def matchdata(self,data):
+        """
+        Whether match data.
+        :param data:
+        :return:
+        """
+        if re.search(data_pattern, data):
+            return True
+        return False
+
     def sub(self, data, value):
-        if re.search(self.captcha_pattern, data):
+        if self.matchcaptcha(data):
             res = self._captcha(data, value)
-        elif re.search(self.data_pattern, data):
+        elif self.matchdata(data):
             res = self._data(data, value)
         else:
             res = data

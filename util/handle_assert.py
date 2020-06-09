@@ -41,6 +41,7 @@ class HandleAssert:
                 elif act[i] != exp[i]:
                     raise AssertionError
             return True
+        raise AssertionError
 
     def Assert(self, actual, expect):
         result = self._compare_json_data(actual, expect)

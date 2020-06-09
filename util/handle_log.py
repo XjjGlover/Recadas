@@ -46,8 +46,8 @@ class HandleLog:
         :return:
         """
         _file_handler = TimedRotatingFileHandler(filename="..\logs\case.log",
-                                                 when="s",
-                                                 interval=3,
+                                                 when="d",
+                                                 interval=1,
                                                  backupCount=5,
                                                  encoding="utf-8"
                                                  )
@@ -62,6 +62,9 @@ class HandleLog:
         logger.addHandler(self._file_handler())
         self.mutex.release()
         return logger
+
+
+do_log = HandleLog().pub_logger()
 
 
 if __name__ == '__main__':
