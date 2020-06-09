@@ -53,15 +53,15 @@ class HandleExcel:
         wb = copy(self.file)
         sheet = wb.get_sheet(0)
         sheet.write(row, 5, actual)
-        sheet.write(row, 6, expect)
-        sheet.write(row, 7, result)
+        sheet.write(row, 7, expect)
+        sheet.write(row, 8, result)
         wb.save(self.filename)
 
 
 do_excel = HandleExcel(r"..\data\cases.xls")
 
 if __name__ == '__main__':
-    do_excel = HandleExcel(r"..\data\cases.xlsx")
+    do_excel = HandleExcel(r"..\data\cases.xls")
     print(do_excel.get_cases()[0])
     print(list(do_excel.get_cases()[0]))
     print(len(do_excel.get_cases()))
