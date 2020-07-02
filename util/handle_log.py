@@ -11,6 +11,7 @@
 import logging
 from logging.handlers import TimedRotatingFileHandler
 from threading import Lock
+from util.handle_dir import LOG_FILE
 
 
 class HandleLog:
@@ -45,7 +46,7 @@ class HandleLog:
         Create file handler
         :return:
         """
-        _file_handler = TimedRotatingFileHandler(filename="..\logs\case.log",
+        _file_handler = TimedRotatingFileHandler(filename=LOG_FILE,
                                                  when="d",
                                                  interval=1,
                                                  backupCount=5,

@@ -8,8 +8,8 @@
 # @contact: 924207089@qq.com
 from collections import namedtuple
 import xlrd
-import xlwt
 from xlutils.copy import copy
+from util.handle_dir import CASE_FILE
 
 
 class HandleExcel:
@@ -58,7 +58,7 @@ class HandleExcel:
         wb.save(self.filename)
 
 
-do_excel = HandleExcel(r"..\data\cases.xls")
+do_excel = HandleExcel(CASE_FILE)
 
 if __name__ == '__main__':
     do_excel = HandleExcel(r"..\data\cases.xls")

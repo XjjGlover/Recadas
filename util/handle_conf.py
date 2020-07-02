@@ -9,6 +9,7 @@
 
 
 from configparser import ConfigParser
+from util.handle_dir import CONF_FILE
 
 
 class HandleConf(ConfigParser):
@@ -73,11 +74,11 @@ class HandleConf(ConfigParser):
             raise TypeError("Data type is error!")
 
 
-do_conf = HandleConf(r"..\conf\url.ini")
+do_conf = HandleConf(CONF_FILE)
 
 
 if __name__ == '__main__':
-    do_conf = HandleConf(r"..\conf\url.ini")
+    do_conf = HandleConf(r"..\conf\conf.ini")
     captcha_url = do_conf.get_value("url", "captcha_url")
-    SQL = do_conf.get_value("sql", "user_data")
+    SQL = do_conf.get_value("sql", "identity_sql")
     print(captcha_url, type(captcha_url))
