@@ -8,11 +8,11 @@
 # @contact: 924207089@qq.com
 import os
 
-import os,sys
+import os, sys
 # Add enviroment-virable.
 dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(dir)
-sys.path.append(r"C:\Users\86188\AppData\Local\Programs\Python\Python37\Lib\site-packages")
+sys.path.append("C:\\Users\\86188\\AppData\\Roaming\\Python\\Python37\\site-packages")
 
 from ddt import ddt, data
 import unittest
